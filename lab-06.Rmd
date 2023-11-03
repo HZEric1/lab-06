@@ -11,6 +11,7 @@ output: html_document
 ```{r load-packages, message=FALSE}
 library(tidyverse) 
 library(ggplot2)
+view(diamonds)
 ```
 
 ```{r diamon_rename}
@@ -28,6 +29,28 @@ diamonds <- diamonds %>% rename(
 
 ```{r}
 # Do some preliminary investigations & cleaning
+diamonds %>%
+  group_by(price) %>%
+  arrange(desc(price)) %>%
+  ggplot(mapping = aes(x = length_mm,y = price)) +
+  geom_point()
+
+diamonds %>%
+  filter(width_mm <= 20) %>%
+  group_by(price) %>%
+  arrange(desc(price)) %>%
+  ggplot(mapping = aes(x = width_mm,y = price)) +
+  geom_point()
+
+diamonds %>%
+  filter(depth_mm <= 20) %>%
+  group_by(price) %>%
+  arrange(desc(price)) %>%
+  ggplot(mapping = aes(x = depth_mm,y = price)) +
+  geom_point()
+
+  
+
 
 
 
